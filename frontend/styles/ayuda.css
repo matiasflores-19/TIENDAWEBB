@@ -1,0 +1,75 @@
+/* ayuda.css */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0 20px;
+  color: #333;
+  min-height: 100vh;
+}
+
+main {
+  max-width: 800px;
+  margin: 40px auto;
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(10, 37, 64, 0.15);
+}
+
+h2 {
+  color: #0A2540;
+  margin-bottom: 20px;
+  font-weight: 700;
+  border-bottom: 3px solid #d80286;
+  padding-bottom: 8px;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+ul li {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+ul li strong {
+  color: #d80286;
+}
+
+section p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a button {
+  background-color: #d80286;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  margin-top: 12px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+a button:hover {
+  background-color: #a01b65;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  main {
+    padding: 20px;
+    margin: 20px auto;
+  }
+}

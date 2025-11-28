@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vender Producto</title>
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/vender.css" />
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <main>
+    <section>
+      <h2>Formulario de Venta</h2>
+      <form id="venderForm">
+        <label for="productoNombre">Nombre del Producto:</label>
+        <input type="text" id="productoNombre" name="productoNombre" required />
+
+        <label for="productoPrecio">Precio:</label>
+        <input type="number" id="productoPrecio" name="productoPrecio" step="0.01" required />
+
+        <label for="productoImagen">URL de Imagen:</label>
+        <input type="url" id="productoImagen" name="productoImagen" required />
+
+        <button type="submit">Vender Producto</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="scripts/includeHeader.js"></script>
+  <script>
+    const form = document.getElementById('venderForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nombre = document.getElementById('productoNombre').value;
+      const precio = parseFloat(document.getElementById('productoPrecio').value);
+      const imagen = document.getElementById('productoImagen').value;
+
+      try {
+        const res = await fetch('https://backtienda-femq.onrender.com/productos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, precio, imagen })
+        });
+
+        if (res.ok) {
+          alert('Producto agregado con éxito');
+          form.reset();
+        } else {
+          alert('Error al agregar producto');
+        }
+      } catch {
+        alert('No se pudo conectar con el servidor');
+      }
+    });
+  </script>
+</body>
+</html>

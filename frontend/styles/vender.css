@@ -1,0 +1,49 @@
+main {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+main h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+main form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+main label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+main input[type="text"],
+main input[type="number"],
+main input[type="url"],
+main textarea {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+main button {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #d80286;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+main button:hover {
+  background-color: #a01b65;
+}
+

@@ -1,0 +1,67 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    
+}
+
+
+/* Estilos de la sección de productos */
+.productos {
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px;
+    border-radius: 20px
+}
+
+.producto {
+    background-color: rgb(253, 253, 253);
+    border-radius: 50px 50px 50px 50px / 50px 50px 50px 50px;
+    padding: 10px;
+    margin: 10px ;
+    width: 200px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(160, 30, 30, 0.2);
+    border-style: solid;
+    border-color: rgb(10, 37, 64, 0.8);
+}
+.producto img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+/* Estilos del pie de página (footer) */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.agregar{
+   color: #12120e;
+  border: 2px solid rgb(216, 2, 134);
+  border-radius: 100px;
+  padding: 18px 36px;
+  display: inline-block;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 #D80286;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+  align-content: end;
+}
+
+.agregar:hover {
+  box-shadow: inset 200px 0 0 0 #D80286;
+  color: #FFF;
+}

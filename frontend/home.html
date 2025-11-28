@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop O'Things</title>
+  <link rel="stylesheet" href="styles/home.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <section class="productos"></section>
+  <script>
+    const contenedor = document.querySelector('.productos');
+    const contadorCarrito = document.getElementById('contador-carrito');
+    const totalElemento = document.getElementById('total');
+    const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+
+    let cantidadProductos = 0;
+    let total = 0;
+
+    async function cargarProductos() {
+      contenedor.innerHTML = 'Cargando productos...';
+      try {
+        const res = await fetch('https://backtienda-femq.onrender.com/productos');
+        const productos = await res.json();
+
+        contenedor.innerHTML = '';
+        productos.forEach(p => {
+          const div = document.createElement('div');
+          div.classList.add('producto');
+          div.innerHTML = `
+            <img src="${p.imagen}" alt="${p.nombre}" />
+            <h3>${p.nombre}</h3>
+            <p>Precio: $${p.precio.toFixed(2)}</p>
+            <button class="agregar" data-precio="${p.precio}">Agregar al carrito</button>
+          `;
+          contenedor.appendChild(div);
+        });
+        const botonesAgregar = document.querySelectorAll('.agregar');
+        botonesAgregar.forEach(boton => {
+          boton.addEventListener('click', () => {
+            const precio = parseFloat(boton.dataset.precio);
+            cantidadProductos++;
+            total += precio;
+            actualizarCarrito();
+          });
+        });
+
+      } catch {
+        contenedor.innerHTML = 'Error cargando productos';
+      }
+    }
+
+    function actualizarCarrito() {
+      contadorCarrito.textContent = cantidadProductos;
+      totalElemento.textContent = total.toFixed(2);
+    }
+
+    vaciarCarritoBtn.addEventListener('click', () => {
+      cantidadProductos = 0;
+      total = 0;
+      actualizarCarrito();
+    });
+
+    cargarProductos();
+  </script>
+    <script src="scripts/includeHeader.js"></script>
+    <script src="scripts/home.js"></script>
+</body>
+</html>

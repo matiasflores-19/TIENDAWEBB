@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Administrar Productos</title>
+    <link rel="stylesheet" href="styles/productos_admin.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+</head>
+<body>
+
+    <div id="header-container"></div>
+
+    <main style="padding: 20px;">
+        <h1>Administrar Productos</h1>
+        <ul id="productos-lista"></ul>
+    </main>
+
+    <script src="scripts/includeHeader.js"></script>
+    <script>
+        const API_BASE = 'https://backtienda-femq.onrender.com';
+
+        async function cargarProductos() {
+            const res = await fetch(`${API_BASE}/productos`);
+            const productos = await res.json();
+
+            const ul = document.getElementById('productos-lista');
+            ul.innerHTML = '';
+
+            productos.forEach(prod => {
+                const li = document.createElement('li');
+                li.textContent = `#${prod.id} - ${prod.nombre}`;
+
+                const btnBorrar = document.createElement('button');
+                btnBorrar.textContent = 'Borrar';
+                btnBorrar.onclick = async () => {
+                    if(confirm(`¿Querés borrar "${prod.nombre}"?`)) {
+                        const resDelete = await fetch(`${API_BASE}/productos/${prod.id}`, {
+                            method: 'DELETE',
+                        });
+                        if (resDelete.ok) {
+                            alert('Producto borrado');
+                            cargarProductos();
+                        } else {
+                            alert('Error al borrar el producto');
+                        }
+                    }
+                };
+
+                li.appendChild(btnBorrar);
+                ul.appendChild(li);
+            });
+        }
+
+        cargarProductos();
+    </script>
+
+</body>
+</html>
